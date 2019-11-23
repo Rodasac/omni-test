@@ -38,6 +38,7 @@ module.exports = {
         test: /\.scss$/,
         use: [ "style-loader", "css-loader", "sass-loader" ]
       },
+      // file-loader to bundle all files what not contains code and must be loaded as assets
       {
         test: /\.(png|jpeg|jpg|woff|woff2|eot|ttf|svg)$/,
         use: ['file-loader']
