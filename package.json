@@ -1,0 +1,20 @@
+{
+  "name": "omni-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rodasac/omni-test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rodasac/omni-test/issues"
+  },
+  "homepage": "https://github.com/Rodasac/omni-test#readme"
+}
