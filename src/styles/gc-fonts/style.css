@@ -1,0 +1,245 @@
+@font-face {
+  font-family: 'gc-font';
+  src:  url('fonts/gc-font.eot?9meuwm');
+  src:  url('fonts/gc-font.eot?9meuwm#iefix') format('embedded-opentype'),
+    url('fonts/gc-font.woff2?9meuwm') format('woff2'),
+    url('fonts/gc-font.ttf?9meuwm') format('truetype'),
+    url('fonts/gc-font.woff?9meuwm') format('woff'),
+    url('fonts/gc-font.svg?9meuwm#gc-font') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.gc-font {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'gc-font' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.gc-font_user:before {
+  content: "\e930";
+}
+.gc-font_phone:before {
+  content: "\e917";
+}
+.gc-font_radio-empty:before {
+  content: "\e91b";
+}
+.gc-font_radio-filled:before {
+  content: "\e91c";
+}
+.gc-font_search:before {
+  content: "\e920";
+}
+.gc-font_caret:before {
+  content: "\e904";
+}
+.gc-font_details:before {
+  content: "\e908";
+}
+.gc-font_down-arrow:before {
+  content: "\e90a";
+}
+.gc-font_logo:before {
+  content: "\e911";
+}
+.gc-font_menu:before {
+  content: "\e914";
+}
+.gc-font_time:before {
+  content: "\e92c";
+}
+.gc-font_up-arrow:before {
+  content: "\e92f";
+}
+.gc-font_add:before {
+  content: "\e900";
+}
+.gc-font_check:before {
+  content: "\e905";
+  color: #010101;
+}
+.gc-font_close:before {
+  content: "\e906";
+}
+.gc-font_error:before {
+  content: "\e90c";
+}
+.gc-font_help:before {
+  content: "\e90d";
+}
+.gc-font_location:before {
+  content: "\e910";
+}
+.gc-font_logout:before {
+  content: "\e912";
+}
+.gc-font_settings:before {
+  content: "\e922";
+}
+.gc-font_timer:before {
+  content: "\e92d";
+}
+.gc-font_audio:before {
+  content: "\e902";
+}
+.gc-font_bot:before {
+  content: "\e903";
+}
+.gc-font_email:before {
+  content: "\e90b";
+}
+.gc-font_idea:before {
+  content: "\e90e";
+}
+.gc-font_instagram:before {
+  content: "\e90f";
+}
+.gc-font_lost:before {
+  content: "\e913";
+}
+.gc-font_messenger:before {
+  content: "\e915";
+}
+.gc-font_pause:before {
+  content: "\e916";
+}
+.gc-font_play:before {
+  content: "\e918";
+}
+.gc-font_preview-copy:before {
+  content: "\e919";
+}
+.gc-font_preview:before {
+  content: "\e91a";
+}
+.gc-font_reply:before {
+  content: "\e91e";
+}
+.gc-font_stop:before {
+  content: "\e925";
+}
+.gc-font_target .path1:before {
+  content: "\e927";
+  color: rgb(0, 0, 0);
+}
+.gc-font_target .path2:before {
+  content: "\e928";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.gc-font_target .path3:before {
+  content: "\e929";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.gc-font_target .path4:before {
+  content: "\e92a";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.gc-font_target .path5:before {
+  content: "\e92b";
+  margin-left: -1em;
+  color: rgb(1, 1, 1);
+}
+.gc-font_whatsapp:before {
+  content: "\e932";
+}
+.gc-font_agent:before {
+  content: "\e901";
+}
+.gc-font_cursor:before {
+  content: "\e907";
+}
+.gc-font_dialog:before {
+  content: "\e909";
+}
+.gc-icon_division .path1:before {
+  content: "\e93b";
+  color: rgb(1, 1, 1);
+}
+.gc-icon_division .path2:before {
+  content: "\e93c";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.gc-icon_division .path3:before {
+  content: "\e93d";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.gc-icon_minus:before {
+  content: "\e93e";
+}
+.gc-font_refresh:before {
+  content: "\e91d";
+}
+.gc-font_script:before {
+  content: "\e91f";
+}
+.gc-font_send:before {
+  content: "\e921";
+}
+.sms:before {
+  content: "\e933";
+}
+.gc-font_speech:before {
+  content: "\e923";
+}
+.gc-font_stats:before {
+  content: "\e924";
+}
+.gc-font_table:before {
+  content: "\e926";
+}
+.gc-font_trash:before {
+  content: "\e92e";
+}
+.update_update:before {
+  content: "\e93a";
+}
+.gc-font_waiting:before {
+  content: "\e931";
+}
+.gc-font_weight_weight:before {
+  content: "\e939";
+}
+.gc-uploadfile:before {
+  content: "\e934";
+  color: #000444;
+}
+.gc-icon_center-divisor:before {
+  content: "\e93f";
+}
+.gc-icon_left-divisor:before {
+  content: "\e940";
+}
+.gc-icon_multiply:before {
+  content: "\e941";
+}
+.gc-icon_right-divisor:before {
+  content: "\e942";
+}
+.chevron-left:before {
+  content: "\e935";
+}
+.chevron-down:before {
+  content: "\e936";
+}
+.chevron-right:before {
+  content: "\e937";
+}
+.chevron-up:before {
+  content: "\e938";
+}
