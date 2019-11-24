@@ -1,0 +1,146 @@
+.login-gradient {
+  height: 100vh;
+  background: linear-gradient(159deg,#8a55e9,#1244be);
+  overflow: hidden;
+  position: relative;
+  width: 100vw;
+
+  .login-component {
+    height: 100%;
+    background-image: url('../assets/sms-loginbg.svg');
+    background-position: 100% 0;
+    background-repeat: no-repeat;
+    background-size: 40%;
+    position: relative;
+    width: 100%;
+  
+    .login-container {
+      background: white;
+      clip-path: polygon(0% 0%, 40% 0%, 100% 100%, 0% 100%, 0% 50%);
+      height: 100%;
+  
+      .login-form {
+        height: 85%;
+      }
+  
+      .login-footer {
+        height: 15%;
+        padding: 0 1em;
+
+        .omni-brand {
+          color: #69708d;
+          font-size: 1.5em;
+          font-weight: 600;
+          line-height: .7;
+
+          span {
+            color: #009ada;
+            font-size: 1.5em;
+            font-weight: 800;
+          }
+        }
+
+        p {
+          color: #69708d;
+          font-size: 0.8em;
+          font-weight: 500;
+
+          span {
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+
+  .robot-border {
+    height: 100%;
+    border: 2px solid #d6dbf5;
+    padding: 0 1em;
+    width: 50%;
+  }
+
+  label {
+    color: #69708d;
+    font-size: 0.8em;
+    font-weight: 500;
+    text-align: right;
+  }
+
+  .input-init {
+    position: relative;
+
+    &::after {
+      font-family: 'gc-font' !important;
+      content: '';
+      width: 2em;
+      height: 2em;
+      border-radius: 2em;
+      background-repeat: no-repeat;
+      background-position: 50%;
+      position: absolute;
+      top: 3px;
+      left: calc(100% - 2em);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+    }
+  }
+
+  .valid {
+    .form-control {
+      border: 1px solid #00c5c8;
+    }
+
+    &::after {
+      background-size: 1em;
+      background-color: #00c5c8;
+      content: "\e905 ";
+      color: #fff;
+    }
+  }
+
+  .invalid {
+    .form-control {
+      border: 1px solid #cb1a35;
+    }
+
+    &::after {
+      background-size: 1em;
+      background-color: #cb1a35;
+      content: "\e906";
+      color: #fff;
+    }
+  }
+
+  .form-control {
+    border-radius: 0;
+
+    &:focus {
+      border: 1px solid #69708d;
+      box-shadow: none;
+      outline: none;
+    }
+  }
+
+  .btn {
+    background-color: #f50f78;
+    border: none;
+    border-radius: 2em;
+    color: #fff;
+    font-size: 0.9em;
+    font-weight: 600;
+    outline: none;
+    padding: 0.75em 2em;
+
+    &:focus {
+      box-shadow: none;
+    }
+
+    &:hover {
+      background-color: #c90860;
+    }
+  }
+}
