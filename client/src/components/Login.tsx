@@ -1,4 +1,8 @@
-import React, { useState, ChangeEvent, FocusEvent } from 'react';
+import React, { useState, ChangeEvent, FocusEvent, FormEvent, useEffect } from 'react';
+import { connect, ConnectedProps, useDispatch, useSelector } from 'react-redux';
+import { withRouter, RouteComponentProps } from 'react-router';
+import { RootState } from './store';
+import { UserLocal } from './store/types';
 
 // @ts-ignore
 import gologo from '../assets/gc-logo-default.svg';
@@ -7,13 +11,41 @@ import gorobot from '../assets/gc-robot.svg';
 
 import '../styles/Login.scss';
 
-const Login = function() {
+const mapState = (state: RootState) => ({
+  user: state.user
+});
+
+const mapDispatch = {
+  logIn: (user: UserLocal) => ({
+    type: 'LOGIN',
+    payload: user
+  })
+};
+
+const connector = connect(
+  mapState,
+  mapDispatch
+);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+type Props = PropsFromRedux & RouteComponentProps & {};
+
+const Login = function(props: Props) {
+  const token = useSelector((state: UserLocal) => state.token);
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState(false);
   const [emailValid, setEmailValid] = useState(false);
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState(false);
   const [passwordValid, setPasswordValid] = useState(false);
+
+  useEffect(() => {
+    if (token) {
+      props.history.push('/');
+    }
+  }, [token]);
 
   const handleEmail = (event: ChangeEvent<HTMLInputElement> | FocusEvent<HTMLInputElement>) => {
     const target = event.target;
@@ -47,6 +79,34 @@ const Login = function() {
     }
   };
 
+  const handleSumit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const payload = {
+      email: email,
+      password: password
+    };
+
+    fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    })
+      .then(res => res.json())
+      .catch(err => console.log(err))
+      .then(response => {
+        console.log(response);
+        const user: UserLocal = {
+          user: response.user,
+          token: response.token
+        };
+        localStorage.setItem('user', JSON.stringify(user));
+
+        dispatch(props.logIn(user));
+      });
+  };
+
   return (
     <div className='login-gradient'>
       <div className='login-component'>
@@ -68,7 +128,7 @@ const Login = function() {
                 </div>
                 <div className='row'>
                   <div className='col-3'>
-                    <form>
+                    <form onSubmit={handleSumit}>
                       <div className='form-group row mb-3'>
                         <label className='col-4'>Correo Electrónico</label>
                         <div
@@ -130,4 +190,4 @@ const Login = function() {
   );
 };
 
-export default Login;
+export default withRouter(connector(Login));
