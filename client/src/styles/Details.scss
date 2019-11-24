@@ -1,0 +1,236 @@
+.details-component {
+  background: #f6e9ff;
+  .navbar {
+    background: linear-gradient(90deg, #9ab5f8, #4d6ec2, #6b23f0, #8a55e9, #8a55e9);
+    padding: 1em;
+
+    .navbar-brand {
+      color: #fff;
+      font-size: 9em;
+      max-height: 60px;
+      position: relative;
+
+      span {
+        margin-top: -.5em;
+        position: absolute;
+      }
+    }
+
+    .nav-link.btn {
+      background: #9f75ec;
+      border: none;
+      border-radius: .5em;
+      color: #fff;
+      font-size: 1em;
+      font-weight: 600;
+      height: 2.5em;
+      outline: none;
+      padding: 0.5em 0.5em;
+      width: 2.5em;
+
+      div {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+
+        span {
+          font-size: 25px;
+        }
+      }
+  
+      &:focus {
+        box-shadow: none;
+      }
+  
+      &:hover {
+        background-color: #c90860;
+      }
+    }
+  }
+
+  .omni-mia {
+    font-weight: 300;
+    margin-top: .5em;
+    margin-bottom: .5em;
+  }
+
+  .campaign-section {
+    background: #fff;
+    padding-bottom: 2em;
+    padding-top: 2em;
+
+    h5 {
+      color: #f32f87;
+      font-weight: 600;
+      margin-bottom: 1em;
+    }
+
+    .campaign-info {
+      background: #458eee;
+      border-radius: .7em;
+      margin: .5em 0;
+
+      p {
+        color: #fff;
+        margin: .5em 0;
+
+        span {
+          font-weight: 300;
+        }
+
+        span:not(:last-of-type) {
+          margin-right: 1em;
+        }
+
+        strong {
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  .campaign-stats {
+    background: #fff;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    text-align: center;
+
+    h3 {
+      font-weight: 600;
+    }
+
+    .gc-font {
+      color: #c1bac5;
+
+      &::before {
+        color: #c1bac5;
+      }
+    }
+
+    .stat {
+      height: 100%;
+      position: relative;
+      width: 100%;
+
+      &::before {
+        border-radius: 1em;
+        bottom: -1em;
+        content: "";
+        display: block;
+        height: .5em;
+        position: absolute;
+        width: 100%;
+      }
+
+      &.stat_transfer {
+        h3 {
+          color: #4d6ec2;
+        }
+        &::before {
+          background: #4d6ec2;
+        }
+      }
+
+      &.stat_starteds {
+        h3 {
+          color: #4bd6cb;
+        }
+        &::before {
+          background: #4bd6cb;
+        }
+      }
+
+      &.stat_dialed {
+        h3 {
+          color: #6b23f0;
+        }
+        &::before {
+          background: #6b23f0;
+        }
+      }
+
+      &.stat_notstarted {
+        h3 {
+          color: #dabb35;
+        }
+        &::before {
+          background: #dabb35;
+        }
+      }
+
+      &.stat_numbers {
+        h3 {
+          color: #458eee;
+        }
+        &::before {
+          background: #458eee;
+        }
+      }
+
+      &.stat_faileds {
+        h3 {
+          color: #ff0e4a;
+        }
+        &::before {
+          background: #ff0e4a;
+        }
+      }
+
+      &.stat_inpaids {
+        h3 {
+          color: #f32f87;
+        }
+        &::before {
+          background: #f32f87;
+        }
+      }
+    }
+  }
+
+  .campaign-list {
+    background: #fff;
+    padding-bottom: 2em;
+    padding-top: 2em;
+
+    .col-12 {
+      display: block;
+      height: 500px;
+      position: relative;
+    }
+
+    table {
+      .thead-light {
+        position: sticky;
+        th {
+          background: #807cbb;
+          border: none;
+          color: #fff;
+          font-weight: 500;
+
+          &:first-of-type {
+            border-top-left-radius: 1em;
+            border-bottom-left-radius: 1em;
+          }
+
+          &:last-of-type {
+            border-top-right-radius: 1em;
+            border-bottom-right-radius: 1em;
+          }
+        }
+      }
+
+      tr, td {
+        border: none;
+        text-align: center;
+      }
+
+      tbody {
+        color: #807cbb;
+      }
+
+      tbody tr:hover {
+        background: #f7e9ff;
+      }
+    }
+  }
+}

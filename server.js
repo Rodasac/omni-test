@@ -55,12 +55,16 @@ fs.readFile(path.join(__dirname, 'lipigas_2111.csv'), 'utf8', function(err, cont
   })
   .on('end', function(){
     for(let i = 0; i < output.length; i++) {
+      first_date = new Date('01-01-2019');
+      first_date.setMilliseconds(parseInt(output[i][1], 10));
+      second_date = new Date('01-01-2019');
+      second_date.setMilliseconds(parseInt(output[i][4], 10));
       const campaign = new Campaign({
         entity: output[i][0],
-        date: new Date(parseInt(output[i][1], 10)),
+        date: first_date,
         status: output[i][2],
         step: output[i][3],
-        status_date: new Date(parseInt(output[i][4], 10))
+        status_date: second_date
       });
 
       campaign.save(function(err, camp) {
