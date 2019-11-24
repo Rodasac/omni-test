@@ -41,6 +41,8 @@ const Login = function(props: Props) {
   const [passwordError, setPasswordError] = useState(false);
   const [passwordValid, setPasswordValid] = useState(false);
 
+  const [errMessage, setErrMessage] = useState('');
+
   useEffect(() => {
     if (token) {
       props.history.push('/');
@@ -96,14 +98,23 @@ const Login = function(props: Props) {
       .then(res => res.json())
       .catch(err => console.log(err))
       .then(response => {
-        console.log(response);
-        const user: UserLocal = {
-          user: response.user,
-          token: response.token
-        };
-        localStorage.setItem('user', JSON.stringify(user));
+        if (response.success) {
+          const user: UserLocal = {
+            user: response.user,
+            token: response.token
+          };
+          localStorage.setItem('user', JSON.stringify(user));
 
-        dispatch(props.logIn(user));
+          dispatch(props.logIn(user));
+        } else {
+          if (response.emailErr) {
+            setEmailError(true);
+          } else {
+            setPasswordError(true);
+          }
+
+          setErrMessage(response.message);
+        }
       });
   };
 
@@ -169,6 +180,15 @@ const Login = function(props: Props) {
                           />
                         </div>
                       </div>
+                      {
+                        errMessage ?
+                          (
+                            <div className='alert alert-danger' role='alert'>
+                              {errMessage}
+                            </div>
+                          )
+                          : ''
+                      }
                       <button type='submit' className='btn btn-primary'>INGRESAR</button>
                     </form>
                   </div>

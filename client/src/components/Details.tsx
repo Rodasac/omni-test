@@ -32,21 +32,53 @@ const Details = function(props: Props) {
   const user = useSelector((state: UserLocal) => state.user);
   const dispatch = useDispatch();
 
-  if (!token) {
-    const userStorage = localStorage.getItem('user');
-    if (userStorage) {
-      const userLocal: UserLocal = JSON.parse(userStorage);
-      console.log(userLocal);
-      dispatch(props.logIn(userLocal));
-    } else {
-      props.history.push('/login');
-    }
-  }
-
   const [userEmail, setUserEmail] = useState(user ? user.email : '');
+
+  const [message, setMessage] = useState('');
+
+  const [campaigns, setCampaigns] = useState([]);
 
   useEffect(() => {
     setUserEmail(user ? user.email : '');
+    if (token) {
+      fetch(
+        '/details',
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
+        }
+      )
+      .then(res => {
+        if (res.ok) return res.json();
+        throw Error('No está autenticado');
+      })
+      .catch(err => {
+        console.log(err);
+        localStorage.removeItem('user');
+        dispatch(props.logOut());
+      })
+      .then(response => {
+        if (response) {
+          if (response.success) {
+            setCampaigns(response.campaigns);
+          } else {
+            setMessage(response.message);
+          }
+        }
+      });
+    } else {
+      const userStorage = localStorage.getItem('user');
+      if (userStorage) {
+        const userLocal: UserLocal = JSON.parse(userStorage);
+        console.log(userLocal);
+        dispatch(props.logIn(userLocal));
+      } else {
+        props.history.push('/login');
+      }
+    }
   }, [token]);
 
   return <h1>{userEmail}</h1>;
