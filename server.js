@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+var fs = require('fs');
 const helmet = require('helmet');
 const session = require('express-session');
 const bodyParser = require('body-parser');
@@ -32,6 +33,47 @@ userAdmin.save(function(err, user) {
   console.log(`User admin saved: ${user.email}`);
 });
 
+const { Campaign } = require('./models/campaigns');
+const parse = require('csv-parse');
+
+const output = [];
+
+fs.readFile(path.join(__dirname, 'lipigas_2111.csv'), 'utf8', function(err, contents) {
+  console.log(contents);
+
+  parse(
+    contents, {
+    trim: true,
+    skip_empty_lines: true,
+    from_line: 2
+  })
+  .on('readable', function(){
+    let record;
+    while (record = this.read()) {
+      output.push(record);
+    }
+  })
+  .on('end', function(){
+    for(let i = 0; i < output.length; i++) {
+      const campaign = new Campaign({
+        entity: output[i][0],
+        date: new Date(parseInt(output[i][1], 10)),
+        status: output[i][2],
+        step: output[i][3],
+        status_date: new Date(parseInt(output[i][4], 10))
+      });
+
+      campaign.save(function(err, camp) {
+        if (err) {
+          console.log(`La campaña ya existe`);
+          return;
+        }
+        console.log(`Campaña: ${camp.entity}`);
+      });
+    }
+  });
+});
+
 app
   .use(bodyParser.json())
   .use(helmet())
@@ -45,19 +87,20 @@ app
   .use(express.static(path.join(__dirname, '/client/dist')))
   .listen(PORT, () => console.log(`Listening on ${PORT}`));
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/client/dist/index.html'));
-});
-
 app.post('/login', (req, res) => {
   User.findOne({'email': req.body.email}, (err, user) => {
-    if (!user) return res.status(400).json({message: 'El usuario no existe'});
+    if (!user) return res.status(200).json({
+      success: false,
+      emailErr: true,
+      message: '¡El usuario no existe!'
+    });
 
     user.comparePasswords(req.body.password, (err, isMatch) => {
       if(err) throw err;
-      if(!isMatch) return res.status(400).json({
+      if(!isMatch) return res.status(200).json({
         success: false,
-        message: 'Contraseña inválida!'
+        passwordErr: true,
+        message: '¡Contraseña inválida!'
       });
 
       const token = jwt.sign({id: user.id, email: user.email},
@@ -79,9 +122,22 @@ app.post('/login', (req, res) => {
   });
 });
 
-app.post('/details', middleware.checkToken, (req, res) => {
-  res.status(200).json({
-    success: true,
-    message: 'Gracias por iniciar'
+app.get('/details', middleware.checkToken, (req, res) => {
+  Campaign.find({}, (err, campaigns) => {
+    if (err) return res.status(200).json({
+      success: true,
+      message: 'No se han encontrado campañas'
+    });
+    const campaignsAll = campaigns;
+
+    res.status(200).json({
+      success: true,
+      message: 'Gracias por iniciar',
+      campaigns: campaignsAll
+    });
   });
+});
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/dist/index.html'));
 });
